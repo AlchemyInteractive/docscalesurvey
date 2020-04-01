@@ -17,13 +17,18 @@
       width: 100vw !important;
       max-width: 100vw !important;
     }
-    img {
+    html{ margin: 0; height: 100%; } 
+    iframe, img {
       display: block;
       margin: 0 auto;
       margin-bottom: 20px;
+      height: 100%;
+      width: 100%;
     }
-    html{ margin: 0; height: 100%; } 
-    iframe{ position: absolute; left:0; right:0; bottom:0; top:0; border:0; } 
+    .iframeWrapper {
+      height: 100%;
+      margin: 0 20vw;
+    }
 
   </style>
 </head>
@@ -49,17 +54,19 @@
         return arra1;
     }
     var embeds = [
-    'https://image.shutterstock.com/image-vector/shopping-online-on-website-mobile-260nw-1206570103.jpg',
-    'https://image.shutterstock.com/image-photo/online-shopping-website-on-laptop-260nw-526104310.jpg',
-    'https://image.shutterstock.com/image-vector/online-shopping-banner-mobile-app-260nw-1129929398.jpg'
+    '<img src="https://image.shutterstock.com/image-vector/shopping-online-on-website-mobile-260nw-1206570103.jpg">',
+    '<img src="https://image.shutterstock.com/image-photo/online-shopping-website-on-laptop-260nw-526104310.jpg">',
+    '<img src="https://image.shutterstock.com/image-vector/online-shopping-banner-mobile-app-260nw-1129929398.jpg">'
     ]
 
     const shuffledArr = shuffle(embeds);
 
     for (i = 0; i < embeds.length; i++) {
-      const image = document.createElement('img');
-      image.src = embeds[i];
-      document.getElementById('embeds').appendChild(image);
+      var element = document.createElement( 'div' );
+      element.classList.add("iframeWrapper");
+      element.innerHTML = embeds[i];
+
+      document.getElementById('embeds').appendChild(element);
     }
   
   </script>
